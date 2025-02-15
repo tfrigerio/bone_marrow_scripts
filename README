@@ -1,0 +1,21 @@
+# Bone Marrow Segmentation
+
+This is supposed to be a reference to the current working version of bone marrow segmentation:
+
+The way it works is by following the roadmap of the AAPM abstract, with a lower threshold for bones (0.7 * 5th percentile + 0.3 * 95th percentile) and eroding away the cortical wall in the x-y plane (the z plane was avoided due to slice thickness).
+
+## Order of Scripts to be Run
+
+1. `dicom_to_nifti.py` (to be completed)
+2. `bone_seg.py` (long)
+3. `spect_resizing.py` (can be run while `bone_seg.py` is working)
+4. `snr_metastasis.py` (can be run as soon as `spect_resizing.py` is finished)
+5. `thresholding_morphology.py` (when `bone_seg.py` is finished, also long)
+6. `metastasis_exclusion.py` (when everything above has finished running)
+7. `nifti_to_rtstruct.py` (final)
+
+The final product is `rtstruct.dcm` in the `marrow_segmentation` directory.
+
+At the moment, this is just supposed to be a minimum working version. It is highly unoptimized and relies heavily on the input directory structure to be reliable. Further work is needed to turn this into a usable tool (Docker, core, something else).
+
+Environment TBA.
