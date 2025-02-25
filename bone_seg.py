@@ -2,6 +2,9 @@ import os
 import nibabel as nib
 from totalsegmentator.python_api import totalsegmentator
 import xmltodict
+import time
+
+
 
 bones = [
     "clavicula_left",
@@ -61,6 +64,9 @@ bones = [
     "vertebrae_T11",
     "vertebrae_T12"
 ]
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+
+
 
 def get_multilabel_nifti_header(img):
     ext_header = img.header.extensions[0].get_content()
@@ -102,5 +108,8 @@ def segment_nifti_files(root_dir):
                 print(f"Segmented file saved: {segmented_file_path}")
 
 if __name__ == "__main__":
-    root_directory = "/radraid/apps/personal/tfrigerio/bone_marrow_project_stuff/resist_quant_data/core_data/UCLA_Lu_nifti_3D_data/"
+    t_start = time.time()
+    root_directory = "/radraid/apps/personal/tfrigerio/bone_marrow_project_stuff/lunar_quant"
     segment_nifti_files(root_directory)
+    t_end = time.time()
+    print("Total time: ", t_end-t_start)
