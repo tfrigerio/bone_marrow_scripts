@@ -4,7 +4,7 @@ import os
 import time
 from utility_functions import *
 
-root_dir = "/radraid/apps/personal/tfrigerio/bone_marrow_project_stuff/resist_quant_data/core_data/UCLA_Lu_nifti_3D_data/"
+root_dir = "/radraid/apps/personal/tfrigerio/bone_marrow_project_stuff/lunar_quant"
 length = len(root_dir)
 if __name__ == "__main__":
 

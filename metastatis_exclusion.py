@@ -5,11 +5,13 @@ import nibabel as nib
 def subtract_metastasis(bone_image, metastasis_image):
     bone_array = bone_image.get_fdata()
     metastasis_array = metastasis_image.get_fdata()
+    if len(metastasis_array.shape) == 4:
+        metastasis_array = metastasis_array[:, :, :, 0]
     bone_array[metastasis_array == 1] = 0
     bone_image = nib.Nifti1Image(bone_array, affine=bone_image.affine, header=bone_image.header)
     return bone_image
 
-root_dir = "/radraid/apps/personal/tfrigerio/bone_marrow_project_stuff/resist_quant_data/core_data/UCLA_Lu_nifti_3D_data/"
+root_dir = "/radraid/apps/personal/tfrigerio/bone_marrow_project_stuff/lunar_quant"
 
 if __name__ == "__main__":
     for subdir, _, files in os.walk(root_dir):

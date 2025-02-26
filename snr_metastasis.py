@@ -13,7 +13,7 @@ def threshold_image(image_array, threshold_up, threshold_down):
     bone_array_mask[image_array >= threshold_down] = 1
     return bone_array_mask
 
-root_dir = "/radraid/apps/personal/tfrigerio/bone_marrow_project_stuff/resist_quant_data/core_data/UCLA_Lu_nifti_3D_data/"
+root_dir = "/radraid/apps/personal/tfrigerio/bone_marrow_project_stuff/lunar_quant"
 # studylist = os.listdir(data_dir)
 # studylist = [i for i in studylist if 'no_quant' not in i]
 

@@ -56,7 +56,7 @@ def combine_bone_marrow(bone_dir, output_path):
     nib.save(marrow_image, output_path)
     return marrow_array
 
-root_dir = "/radraid/apps/personal/tfrigerio/bone_marrow_project_stuff/rt_struct_out/"
+root_dir = "/radraid/apps/personal/tfrigerio/bone_marrow_project_stuff/lunar_quant/"
 
 if __name__ == "__main__":
     t0 = time.time()
@@ -65,6 +65,13 @@ if __name__ == "__main__":
         for file in files:
             if "marrow" in file and "spinal_cord" not in file and "marrow_segmentation" in subdir:
                 if subdir in subdir_list:
+                    continue
+                list_dir = os.listdir(subdir)
+                escape = False
+                for item in list_dir:
+                    if ".dcm" in item:
+                        escape =True
+                if escape:
                     continue
                 print(f"Processing directory: {subdir}")
                 subdir_list.append(subdir)
@@ -79,7 +86,7 @@ if __name__ == "__main__":
                 dicom_path_list = os.listdir(previous_dir)
                 
                 for dicom_path in dicom_path_list:
-                    if '_DICOM' in dicom_path:
+                    if '_DICOM' in dicom_path and 'CT_' in dicom_path:
                         dicom_series_path = os.path.join(previous_dir, dicom_path)
                         print(f"Processing DICOM series: {dicom_series_path}")
                         break
